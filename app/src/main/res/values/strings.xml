@@ -92,4 +92,7 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="emptyfields">Empty form fields! Please fill all data in!</string>
+    <string name="title_activity_photo_viewer">Photo Viewer</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+
 </resources>

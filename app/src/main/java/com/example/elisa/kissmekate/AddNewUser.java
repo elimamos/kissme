@@ -1,5 +1,6 @@
 package com.example.elisa.kissmekate;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -49,6 +50,13 @@ public class AddNewUser extends AppCompatActivity {
         mBuilder.setContentTitle("Notification Alert, Click Me!");
         mBuilder.setContentText("Hi, This is Android Notification Detail!");
         mBuilder.build();
+
+    }
+
+    public void openCam(View view) {
+        Intent i = new Intent(this, GetUserLips.class);
+        //startActivityForResult(i,1);
+        startActivity(i);
 
     }
 }

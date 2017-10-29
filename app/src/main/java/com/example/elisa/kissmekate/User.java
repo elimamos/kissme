@@ -8,10 +8,12 @@ public class User {
   String userName;
   String surname;
    int index;
+    int distances[];
     User(String uName, String sname, int ind){
         userName=uName;
         surname=sname;
         index=ind;
+
     }
 
 }
