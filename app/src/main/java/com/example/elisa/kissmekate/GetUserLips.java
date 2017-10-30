@@ -267,9 +267,18 @@ public class GetUserLips extends AppCompatActivity {
 
     public void showme(View view) {
        // FaceView fv= new FaceView(this ,null);
-          TextView tv = (TextView) findViewById(R.id.bottom);
+        /*  TextView tv = (TextView) findViewById(R.id.bottom);
 
         tv.setText("długość:"+Double.toString(overlay.getMyLenths()[0])+" lewy do środka:"+Double.toString(overlay.getMyLenths()[1])+" prawy do środka:"+Double.toString(overlay.getMyLenths()[2])+" środek nos:"+Double.toString(overlay.getMyLenths()[3])+" lewo nosL"+Double.toString(overlay.getMyLenths()[4])+" prawo nos:"+Double.toString(overlay.getMyLenths()[5]));
+*/
+        TextView  ratio    = (TextView) findViewById(R.id.ratio);
+        double[]numbers=overlay.getMyRelations();
+        String text="";
+        for(double i:numbers){
+            text+=Double.toString(i)+"   ";
+        }
+        ratio.setText(text);
+
     }
 
    /* @Override

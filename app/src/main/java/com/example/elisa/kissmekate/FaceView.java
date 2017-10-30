@@ -94,8 +94,8 @@ public class FaceView extends View {
     private int rightY;
     private int bottomX;
     private int bottomY;
-    private int noseX;
-    private int noseY;
+    private static int noseX;
+    private static int noseY;
     private void drawFaceAnnotations(Canvas canvas, double scale) {
         Paint paint = new Paint();
         paint.setColor(getResources().getColor(R.color.colorPrimaryDark));
@@ -114,26 +114,26 @@ public class FaceView extends View {
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
 
                         canvas.drawCircle(leftX, leftY, 10, paint);
-
+                        break;
                     case Landmark.RIGHT_MOUTH:
                         rightX = (int) (landmark.getPosition().x * scale);
                         rightY = (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
-
                         canvas.drawCircle(rightX,rightY, 10, paint);
+                        break;
 
                     case Landmark.BOTTOM_MOUTH:
                         bottomX = (int) (landmark.getPosition().x * scale);
                         bottomY = (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
-
                         canvas.drawCircle(bottomX, bottomY, 10, paint);
-
+                        break;
                     case Landmark.NOSE_BASE:
                         noseX = (int) (landmark.getPosition().x * scale);
                         noseY = (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
                         canvas.drawCircle(noseX, noseY, 10, paint);
+                        break;
                     default:;
 
 
@@ -142,16 +142,23 @@ public class FaceView extends View {
 
             }
             getlenngths();
+            getRelations();
 
         }
 
 
     }
+    //A
     public double cornerlength;
+    //B
     public double leftmiddle;
+    //C
     public double rightmiddle;
+    //D
     public double middlenose;
+    //E
     public double leftnose;
+    //F
     public double rightnose;
     private void getlenngths(){
         cornerlength=countdistance(leftX,rightX,leftY,rightY);
@@ -177,6 +184,48 @@ public class FaceView extends View {
 
 return distance;
 
+    }
+    double AB;
+    double AC;
+    double AD;
+    double AE;
+    double AF;
+    double BC;
+    double BD;
+    double BE;
+    double BF;
+    double CD;
+    double CE;
+    double CF;
+    double DE;
+    double DF;
+    double EF;
+
+
+    public void getRelations(){
+        AB=countRelation(cornerlength,leftmiddle);
+        AC=countRelation(cornerlength,rightmiddle);
+        AD=countRelation(cornerlength,middlenose);
+        AE=countRelation(cornerlength,leftnose);
+        AF=countRelation(cornerlength,rightnose);
+        BC=countRelation(leftmiddle,rightmiddle);
+        BD=countRelation(leftmiddle,middlenose);
+        BE=countRelation(leftmiddle,leftnose);
+        BF=countRelation(leftmiddle,rightnose);
+        CD=countRelation(rightmiddle,middlenose);
+        CE=countRelation(rightmiddle,leftnose);
+        CF=countRelation(rightmiddle,rightnose);
+        DE=countRelation(middlenose,rightnose);
+        DF=countRelation(middlenose,leftnose);
+        EF=countRelation(leftnose,rightnose);
+    }
+    public double countRelation(double value1, double value2){
+        double ratio= value1/value2;
+        return ratio;
+    }
+    public double[] getMyRelations(){
+        double[]relations=new double[]{  AB, AC, AD, AE, AF, BC, BD, BE, BF, CD, CE,CF,DE, DF, EF};
+        return relations;
     }
     public double[] getMyLenths(){
         double [] numbers= new double[]{cornerlength, leftmiddle,
