@@ -187,15 +187,12 @@ public class GetUserLips extends AppCompatActivity {
 
         }
         overlay = (FaceView) findViewById(R.id.faceView);
-      //  rotatedBitmap=createContrast(rotatedBitmap,50);
         overlay.setContent(rotatedBitmap, faces);
 
         // Although detector may be used multiple times for different images, it should be released
         // when it is no longer needed in order to free native resources.
         safeDetector.release();
         TextView tv = (TextView) findViewById(R.id.bottom);
-  //      FaceView fv= new FaceView()
-   //     tv.setText(Double.toString( ));
 
     }
 
@@ -271,14 +268,30 @@ public class GetUserLips extends AppCompatActivity {
 
         tv.setText("długość:"+Double.toString(overlay.getMyLenths()[0])+" lewy do środka:"+Double.toString(overlay.getMyLenths()[1])+" prawy do środka:"+Double.toString(overlay.getMyLenths()[2])+" środek nos:"+Double.toString(overlay.getMyLenths()[3])+" lewo nosL"+Double.toString(overlay.getMyLenths()[4])+" prawo nos:"+Double.toString(overlay.getMyLenths()[5]));
 */
-        TextView  ratio    = (TextView) findViewById(R.id.ratio);
+       // TextView  ratio    = (TextView) findViewById(R.id.ratio);
         double[]numbers=overlay.getMyRelations();
-        String text="";
+        String message = overlay.getMyMessage();
+        /*String text="";
         for(double i:numbers){
             text+=Double.toString(i)+"   ";
-        }
-        ratio.setText(text);
+        }*/
+        if(message.equals("")){
+            Intent data = this.getIntent();
 
+            data.putExtra("numbers",numbers);
+            setResult(RESULT_OK, data);
+            finish();
+        }else {
+            TextView tv = (TextView) findViewById(R.id.messageBox);
+            tv.setText(message);
+        }
+
+      //  ratio.setText(text);
+
+    }
+
+    public void retry(View view) {
+        recreate();
     }
 
    /* @Override

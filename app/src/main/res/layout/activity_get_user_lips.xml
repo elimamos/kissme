@@ -4,32 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context="com.example.elisa.kissmekate.GetUserLips">
 
 
-    <TextView
-        android:id="@+id/bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-
     <com.example.elisa.kissmekate.FaceView
         android:id="@+id/faceView"
-        android:layout_width="242dp"
-        android:layout_height="336dp" />
-
-    <Button
-        android:id="@+id/button6"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:onClick="showme"
-        android:text="Button" />
+        android:layout_height="336dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.61" />
 
     <TextView
-        android:id="@+id/ratio"
+        android:id="@+id/messageBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.22"
+        tools:text="TEST" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="retry"
+            android:text="Retry"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="showme"
+            android:text="Accept"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 </LinearLayout>

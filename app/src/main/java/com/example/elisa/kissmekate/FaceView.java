@@ -21,6 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 
@@ -35,9 +36,11 @@ public class FaceView extends View {
     private Bitmap mBitmap;
     private SparseArray<Face> mFaces;
     public int[]lengths;
+    String message;
 
     public FaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        message="";
     }
 
     /**
@@ -101,7 +104,14 @@ public class FaceView extends View {
         paint.setColor(getResources().getColor(R.color.colorPrimaryDark));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
+        boolean leftFound=false;
+        boolean rightFound=false;
+        boolean bottomFound=false;
+        boolean noseFound=false;
+        if (mFaces.size() == 0) {
+            message="No face dectected please try again!";
 
+        }
         for (int i = 0; i < mFaces.size(); ++i) {
             Face face = mFaces.valueAt(i);
           //  Log.d("Landmark","i value:"+i+" face  is smiling probably :" + face.getIsSmilingProbability());
@@ -112,7 +122,7 @@ public class FaceView extends View {
                        leftX  = (int) (landmark.getPosition().x * scale);
                          leftY= (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
-
+                        leftFound=true;
                         canvas.drawCircle(leftX, leftY, 10, paint);
                         break;
                     case Landmark.RIGHT_MOUTH:
@@ -120,6 +130,7 @@ public class FaceView extends View {
                         rightY = (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
                         canvas.drawCircle(rightX,rightY, 10, paint);
+                        rightFound=true;
                         break;
 
                     case Landmark.BOTTOM_MOUTH:
@@ -127,14 +138,18 @@ public class FaceView extends View {
                         bottomY = (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
                         canvas.drawCircle(bottomX, bottomY, 10, paint);
+                        bottomFound=true;
                         break;
                     case Landmark.NOSE_BASE:
                         noseX = (int) (landmark.getPosition().x * scale);
                         noseY = (int) (landmark.getPosition().y * scale);
                         //   Log.d("Landmark", "landmark: " + landmark.toString() + " " + cx + " " + cy);
                         canvas.drawCircle(noseX, noseY, 10, paint);
+                        noseFound=true;
                         break;
-                    default:;
+                    default:
+
+                        break;
 
 
                 }
@@ -144,6 +159,14 @@ public class FaceView extends View {
             getlenngths();
             getRelations();
 
+        }
+        if(leftFound && rightFound && bottomFound && noseFound){
+            message="";
+            Log.d("LAND","FOUND ALL!");
+        }else
+        {
+            message="Missing landmarks! Please retry!";
+            Log.d("LAND","Missing!!");
         }
 
 
@@ -201,7 +224,9 @@ return distance;
     double DF;
     double EF;
 
-
+    public String getMyMessage(){
+        return message;
+    }
     public void getRelations(){
         AB=countRelation(cornerlength,leftmiddle);
         AC=countRelation(cornerlength,rightmiddle);
