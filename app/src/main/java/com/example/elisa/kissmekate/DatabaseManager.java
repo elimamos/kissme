@@ -146,7 +146,7 @@ public class DatabaseManager {
     public Cursor fetchUser(int index) throws SQLException {
         Cursor mCursor = null;
             mCursor = mDb.query(true, SQLITE_TABLE, new String[] {KEY_ROWID,
-                       KEY_NAME, KEY_SURENAME, KEY_TRANS, KEY_AB, KEY_AC, KEY_AD,KEY_AF,KEY_AE, KEY_BE,KEY_BD,KEY_BC,KEY_BF,KEY_CF,KEY_CE,KEY_CD,KEY_DF,KEY_DE,KEY_EF},
+                       KEY_NAME, KEY_SURENAME, KEY_TRANS, KEY_AB, KEY_AC, KEY_AD,KEY_AE,KEY_AF,KEY_BC,KEY_BD,KEY_BE,KEY_BF,KEY_CD,KEY_CE,KEY_CF,KEY_DF,KEY_DE,KEY_EF},
                     KEY_TRANS + " like '%" + index + "%'", null,
                     null, null, null, null);
 
@@ -161,7 +161,7 @@ public class DatabaseManager {
         if(mDb.isOpen()){ Log.d(TAG, "I AM OPEN");}
 
         Cursor mCursor = mDb.query(SQLITE_TABLE, new String[] {KEY_ROWID,
-                        KEY_NAME, KEY_SURENAME, KEY_TRANS, KEY_AB, KEY_AC, KEY_AD,KEY_AF,KEY_AE, KEY_BE,KEY_BD,KEY_BC,KEY_BF,KEY_CF,KEY_CE,KEY_CD,KEY_DF,KEY_DE,KEY_EF},
+                        KEY_NAME, KEY_SURENAME, KEY_TRANS, KEY_AB, KEY_AC, KEY_AD,KEY_AE,KEY_AF,KEY_BC,KEY_BD,KEY_BE,KEY_BF,KEY_CD,KEY_CE,KEY_CF,KEY_DF,KEY_DE,KEY_EF},
                 null, null, null, null, null);
 
         if (mCursor != null) {

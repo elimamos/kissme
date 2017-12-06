@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -210,6 +209,7 @@ public class GetUserLips extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         if (requestCode == CAM_REQUEST && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
           bitmap = (Bitmap) extras.get("data");
@@ -217,64 +217,15 @@ public class GetUserLips extends AppCompatActivity {
 
         }
     }
-    public static Bitmap createContrast(Bitmap src, double value) {
-        // image size
-        int width = src.getWidth();
-        int height = src.getHeight();
-        // create output bitmap
-        Bitmap bmOut = Bitmap.createBitmap(width, height, src.getConfig());
-        // color information
-        int A, R, G, B;
-        int pixel;
-        // get contrast value
-        double contrast = Math.pow((100 + value) / 100, 2);
 
-        // scan through all pixels
-        for(int x = 0; x < width; ++x) {
-            for(int y = 0; y < height; ++y) {
-                // get pixel color
-                pixel = src.getPixel(x, y);
-                A = Color.alpha(pixel);
-                // apply filter contrast for every channel R, G, B
-                R = Color.red(pixel);
-                R = (int)(((((R / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-                if(R < 0) { R = 0; }
-                else if(R > 255) { R = 255; }
-
-                G = Color.red(pixel);
-                G = (int)(((((G / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-                if(G < 0) { G = 0; }
-                else if(G > 255) { G = 255; }
-
-                B = Color.red(pixel);
-                B = (int)(((((B / 255.0) - 0.5) * contrast) + 0.5) * 255.0);
-                if(B < 0) { B = 0; }
-                else if(B > 255) { B = 255; }
-
-                // set new pixel color to output bitmap
-                bmOut.setPixel(x, y, Color.argb(A, R, G, B));
-            }
-        }
-
-        // return final image
-        return bmOut;
-    }
 
 
 
     public void showme(View view) {
-       // FaceView fv= new FaceView(this ,null);
-        /*  TextView tv = (TextView) findViewById(R.id.bottom);
 
-        tv.setText("długość:"+Double.toString(overlay.getMyLenths()[0])+" lewy do środka:"+Double.toString(overlay.getMyLenths()[1])+" prawy do środka:"+Double.toString(overlay.getMyLenths()[2])+" środek nos:"+Double.toString(overlay.getMyLenths()[3])+" lewo nosL"+Double.toString(overlay.getMyLenths()[4])+" prawo nos:"+Double.toString(overlay.getMyLenths()[5]));
-*/
-       // TextView  ratio    = (TextView) findViewById(R.id.ratio);
         double[]numbers=overlay.getMyRelations();
         String message = overlay.getMyMessage();
-        /*String text="";
-        for(double i:numbers){
-            text+=Double.toString(i)+"   ";
-        }*/
+
         if(message.equals("")){
             Intent data = this.getIntent();
 
@@ -286,7 +237,6 @@ public class GetUserLips extends AppCompatActivity {
             tv.setText(message);
         }
 
-      //  ratio.setText(text);
 
     }
 
@@ -294,25 +244,6 @@ public class GetUserLips extends AppCompatActivity {
         recreate();
     }
 
-   /* @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if(image_file.exists()){
-            setResult(Activity.RESULT_OK,
-                    new Intent().putExtra("sciezkaObraz", image_file.getAbsolutePath()).putExtra("sciezkaObraz", image_file.getAbsolutePath()));
-            Log.d("MainActivity",image_file.getAbsolutePath().toString());
-
-            finish();
-        }
-        else {
-
-            setResult(Activity.RESULT_OK,
-                    new Intent().putExtra("sciezkaObraz",image_file.getAbsolutePath()).putExtra("sciezkaObraz",""));
-            Log.d("MainActivity","No image created");
-
-            finish();
-
-        }
-    }*/
 
 }
