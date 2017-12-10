@@ -117,7 +117,7 @@
                     android:id="@+id/aboutText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="This app was created on purpouse of the Biometric clsses at GUT ETI by E. Mamos, A., IBM students."
                     android:textColor="@color/colorPrimaryDark" />
 
             </LinearLayout>

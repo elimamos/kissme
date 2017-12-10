@@ -42,14 +42,15 @@ boolean isOK;
         TextView transL =(TextView) findViewById(R.id.transL);
         TextView trans =(TextView) findViewById(R.id.transcript);
         if(isOK){
-                info.setText("Congratulations you logged in as:");
+            info.setText("Congratulations you logged in as:");
             nameL.setVisibility(View.VISIBLE);
             name.setText(response.getString(1));
             snameL.setVisibility(View.VISIBLE);
             sname.setText(response.getString(2));
             transL.setVisibility(View.VISIBLE);
             trans.setText(response.getString(3));
-        }
+
+    }
         else{
             info.setText("Couldn't log user in! Please try again.");
         }
@@ -60,4 +61,6 @@ double  countDifference(double user1,double tryingUser){
     double percentage=(difference/user1)*100;
     return percentage;
 }
+
+
 }
