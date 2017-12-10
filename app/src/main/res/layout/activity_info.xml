@@ -100,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="1dp"
-                    android:text=""
+                    android:text="\n\n Welcome to the KissMe app! This project was created for users to log in safely by their lip shape. This is only a test app of this biometric verification method, but it might be used in future. \nIn order to test our App please add your name, surname and transcript no. (index) in the form which opens when the \'ADD NEW USER\' option was chosen. \n Next please \'SHOW US YOUR LIPS\' so the app can save the details about your lips. Remember please that the face expression you make while taking the picture will be important while logging in! You can retry taking the picture as many times as you like. Please press \'ACCEPT\' when you are satisfied. Note, that this picture won\'t be used in our database! You can delete it from your phone after the user was added to the base. \n Now to verify your identity please process to the \'LOG IN\' section. Use the given transcript number and your lips, to check if you are able to log in and retrieve information about the user.\n\n    "
                     android:textColor="@color/colorPrimaryDark" />
 
                 <TextView
@@ -117,7 +117,7 @@
                     android:id="@+id/aboutText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="This app was created on purpouse of the Biometric clsses at GUT ETI by E. Mamos, A., IBM students."
+                    android:text="This app was created on purpouse of the Biometric clsses at GUT ETI by E. Mamos, A. Pancer, IBM students."
                     android:textColor="@color/colorPrimaryDark" />
 
             </LinearLayout>
